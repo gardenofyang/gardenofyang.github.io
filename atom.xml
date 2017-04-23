@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>garden of yang</title>
+  <subtitle>blog of yang</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-23T14:08:54.056Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>yang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>正向代理和反向代理</title>
+    <link href="http://yoursite.com/2017/04/22/201704/22-%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    <id>http://yoursite.com/2017/04/22/201704/22-正向代理和反向代理/</id>
+    <published>2017-04-22T12:00:00.000Z</published>
+    <updated>2017-04-23T14:08:54.056Z</updated>
+    
+    <content type="html"><![CDATA[<p>正向代理和反向代理的简单理解<br><a id="more"></a></p>
+<p>正向代理：常用的方式是翻墙或者匿名访问网络。主要针对客户端而言。</p>
+<p>反向代理：通常用来作为服务器端的前置负载均衡或者路由控制。主要针对服务端提供方而言。</p>
+<p>引用</p>
+<ul>
+<li><a href="http://cpper.info/2016/05/25/ForwordProxy-And-ReverseProxy.html" target="_blank" rel="external">正向代理和反向代理的区别</a></li>
+<li><a href="https://www.zhihu.com/question/24723688" target="_blank" rel="external">反向代理为何叫反向代理？</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25423394" target="_blank" rel="external">正向代理和反向代理的区别</a></li>
+<li><a href="http://z00w00.blog.51cto.com/515114/1031287" target="_blank" rel="external">图解正向代理、反向代理、透明代理</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Proxy_server#Forward_proxy" target="_blank" rel="external">Proxy server</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reverse_proxy" target="_blank" rel="external">Reverse proxy</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;正向代理和反向代理的简单理解&lt;br&gt;
+    
+    </summary>
+    
+      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多租户架构</title>
+    <link href="http://yoursite.com/2017/04/22/201704/22-%E5%A4%9A%E7%A7%9F%E6%88%B7%E6%9E%B6%E6%9E%84/"/>
+    <id>http://yoursite.com/2017/04/22/201704/22-多租户架构/</id>
+    <published>2017-04-22T11:00:00.000Z</published>
+    <updated>2017-04-23T14:14:32.651Z</updated>
+    
+    <content type="html"><![CDATA[<p>多租户架构的三种方式<br><a id="more"></a></p>
+<p>多租户——目前的解释多种多样。</p>
+<p>举个简单的例子，目前很多公司会租用OA或者CRM，只要以公司的名义注册一个用户，然后就可以使用了。这些系统里面包含完整的各项功能。</p>
+<p>作为提供商，网站可以只有一套（通过路由机制很容易搞定），主要是数据库，目前有大致三种处理方式：</p>
+<p>1、 第一种，简单粗暴，为每个注册的公司客户创建一个数据库。这样简单，基本不存在冲突问题，而且基本没啥太大的代价，只要网站路由即可。但是如果有成千上万的公司客户，这个数据库的个数很壮观的。</p>
+<p>2、 第二种，为每个注册的公司用户基于一定的规则创建一套表，然后在处理数据的时候动态处理这些表。这个倒不是很麻烦，如果能在sql解析层处理未尝不是个好方法。这种方式的数据压力来的比较晚，但是最终仍然逃脱不了单库的上限，最终可能还是得分库分机器。</p>
+<p>3、 第三种，使用同一套数据表，在每个表里面标示每条记录的所属客户，相当于操作任何数据，必备携带这种标示，一不小心就跨域公司客户的数据，很危险，但是对于一般的系统也能凑合使用。但是即使能解决权限问题，数据量很容易增长，很容易造成数据库瓶颈。最终可能还是得分库。当然，他的优点是数据集中，容易统计分析。</p>
+<p>所以某种程度上，都得支持分库，第一种基本不存在这个问题。第二种在单个单库无法容纳的情况下，还是最借助增加数据库。第三种的，数据到达瓶颈的速度最快，分库的要求最快来到。</p>
+<hr>
+<p>引用：</p>
+<ul>
+<li><a href="https://rubygarage.org/blog/three-database-architectures-for-a-multi-tenant-rails-based-saas-app" target="_blank" rel="external">Three Database Architectures for a Multi-Tenant Rails-Based SaaS App</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications" target="_blank" rel="external">Design patterns for multitenant SaaS applications and Azure SQL Database</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/aa479086.aspx" target="_blank" rel="external">Multi-Tenant Data Architecture</a></li>
+<li><a href="http://blog.sae.sina.com.cn/archives/2557" target="_blank" rel="external">数据层的多租户浅谈</a></li>
+<li><a href="https://softwareengineering.stackexchange.com/questions/141261/multi-tenancy-single-database-vs-multiple-database" target="_blank" rel="external">Multi-tenancy - single database vs multiple database</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;多租户架构的三种方式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="架构" scheme="http://yoursite.com/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="架构" scheme="http://yoursite.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>系统软件列表</title>
+    <link href="http://yoursite.com/2017/04/20/201704/20-%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%88%97%E8%A1%A8/"/>
+    <id>http://yoursite.com/2017/04/20/201704/20-系统软件列表/</id>
+    <published>2017-04-20T12:00:00.000Z</published>
+    <updated>2017-04-20T14:45:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>列出平时使用的一些软件工具，后续会陆续添加。<br><a id="more"></a></p>
+<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><ul>
+<li>Visual Studio</li>
+<li>android studio</li>
+<li>eclipse</li>
+<li>netbeans</li>
+<li>WebStorm</li>
+<li>Arduino</li>
+</ul>
+<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><ul>
+<li>visual studio code</li>
+<li>atom</li>
+<li>Sublime Text</li>
+<li>notepad++</li>
+<li>markdownpad</li>
+</ul>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><ul>
+<li>vmware workstation</li>
+<li>virtualbox</li>
+</ul>
+<h3 id="编程辅助"><a href="#编程辅助" class="headerlink" title="编程辅助"></a>编程辅助</h3><ul>
+<li>VisualSVN</li>
+<li>Gitlab</li>
+<li>Jira</li>
+<li>confluence</li>
+<li>TortoiseSVN</li>
+<li>dbeaver </li>
+</ul>
+<h3 id="系统工具"><a href="#系统工具" class="headerlink" title="系统工具"></a>系统工具</h3><ul>
+<li>spacesniffer</li>
+<li>windirstat</li>
+<li>TeamViewer</li>
+<li>Windows Grep</li>
+<li>Fiddler4</li>
+<li>lantern</li>
+<li>Shadowsocks</li>
+<li>ProcessExplorer</li>
+<li>ColorPix</li>
+<li>cmder</li>
+<li>calibre</li>
+<li>Everything</li>
+<li>FeiQ</li>
+<li>fritzing</li>
+</ul>
+<h3 id="原型工具"><a href="#原型工具" class="headerlink" title="原型工具"></a>原型工具</h3><ul>
+<li>Mockplus <a href="https://www.mockplus.cn/" target="_blank" rel="external">官网</a></li>
+<li>axure <a href="https://www.axure.com/" target="_blank" rel="external">官网</a></li>
+<li>Balsamiq Mockup <a href="https://balsamiq.com/" target="_blank" rel="external">官网</a></li>
+</ul>
+<h3 id="建模工具"><a href="#建模工具" class="headerlink" title="建模工具"></a>建模工具</h3><ul>
+<li>visio</li>
+<li>Astah Community <a href="http://astah.net/" target="_blank" rel="external">官网</a></li>
+<li>dia <a href="http://dia-installer.de/" target="_blank" rel="external">官网</a></li>
+<li>PowerDesigner  <a href="http://powerdesigner.de/" target="_blank" rel="external">官网</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;列出平时使用的一些软件工具，后续会陆续添加。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>asp.net forms authentication</title>
+    <link href="http://yoursite.com/2017/04/15/201704/15-%20asp.net%20forms%20authentication/"/>
+    <id>http://yoursite.com/2017/04/15/201704/15- asp.net forms authentication/</id>
+    <published>2017-04-15T12:00:00.000Z</published>
+    <updated>2017-04-20T14:46:13.031Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实不大喜欢微软的认证框架，学习成本和使用收益不成正比，随便实现一个认证都不是很复杂的活。不过随着第三方认证的接口出现，他的价值也相对大点，终于不用自己单独写了，而且也好交流了。除此之外，微软的东西还是很不错了，奈何人太懒惰，也一直没撵上微软的速度。<br><a id="more"></a></p>
+<p>asp.net的用户管理最早是使用membership，但是我基本没有用过。原因很简单，自己实现同样的功能的所需要花费的时间以及相应的灵活性，要比membership高很多。这倒不是membership复杂或者缺乏灵活性，而是实现的过程本身不是很复杂，而membership毕竟是个已经设计好的，学习本身的成本摆在那，而且有时候扩展也没那么方便。</p>
+<p>通常的权限流程包括，认证，授权。</p>
+<p>认证主要是通过各种凭证，比如用户名密码、证书、U盾等等，确定当前用户的有效性。授权是在认证通过后，对已认证的用户进行授权，即能接触操作那些信息。目前这套方式流程都已经很通用，而下面我们的重心在于在网页实现这种认证授权的连续性。</p>
+<p>网页是无状态的，极端点，每次可能都是需要认证授权，但是相信没人愿意不停的输入账号密码完成一个网站的操作。通常是在认证通过后，分配一个有时效性的凭条，然后通过这个凭条进行后续的授权，而不再需要重新认证。简单的可以把这个凭条当做用户名密码本身，只是很少有人这么做。一般来说，这个凭条会在认证后的每个http请求上都带上，比如放在cookie、header、form表单里面，然后网站收到请求时，会通过这个凭条来获取凭条对应用户的信息和授权情况，后续的处理过程就可以通过这个来完成各种授权。</p>
+<p>asp.net默认的http处理方式是通过pipeline完成的，每个请求过来了，都会经过一个又一个的Module处理，然后才到达页面进行处理。这些Module里面就有Authentication（认证）和Authorization（授权）处理。Authentication相当门卫，只是检查你有没有进入网站的凭条，否则只能到登录页面去认证。Authorization主要看访问的信息，比如页面或者目录行不行，不过这里的Authorization相当粗糙，其实很多的Authorization都需要根据当前上下文环境进行复杂的判断处理，授权复杂的系统，授权很贯穿到后续所有的流程。</p>
+<p>如果不借助membership，认证完毕后简单的做法就是写个cookie信息，后续通过这个cookie构建相应的用户信息然后进行授权。然后离开的时候清除这些cookie即可。所以用不用membership都不是很重要。只是，他在一定的情况下，可以大大减少代码而已，比如简单的写入和移除cookie，<code>FormsAuthentication.SetAuthCookie</code>和<code>FormsAuthentication.SignOut()</code>就足够了，当然如果需要保存复杂的cookie信息，那还是需要自己写点东西的，不过也可以模仿这俩函数来简单完成，只是构建的用户信息的时候，asp.net默认自带的不会识别，需要自己手工构建用户信息，具体构建位置——只要在使用前哪个环节都行。</p>
+<hr>
+<p>引用</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/older-versions-security/introduction/an-overview-of-forms-authentication-cs" target="_blank" rel="external">An Overview of Forms Authentication (C#)</a></li>
+<li><a href="http://www.cnblogs.com/jesse2013/p/membership.html" target="_blank" rel="external">Membership三步曲之入门篇 - Membership基础示例</a></li>
+<li><a href="http://www.cnblogs.com/fish-li/archive/2012/04/15/2450571.html" target="_blank" rel="external">细说ASP.NET Forms身份认证</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实不大喜欢微软的认证框架，学习成本和使用收益不成正比，随便实现一个认证都不是很复杂的活。不过随着第三方认证的接口出现，他的价值也相对大点，终于不用自己单独写了，而且也好交流了。除此之外，微软的东西还是很不错了，奈何人太懒惰，也一直没撵上微软的速度。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="asp.net" scheme="http://yoursite.com/categories/asp-net/"/>
+    
+    
+      <category term="asp.net" scheme="http://yoursite.com/tags/asp-net/"/>
+    
+      <category term="安全" scheme="http://yoursite.com/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>centos7安装Mariadb</title>
+    <link href="http://yoursite.com/2017/04/11/201704/11-centos7%E5%AE%89%E8%A3%85Mariadb/"/>
+    <id>http://yoursite.com/2017/04/11/201704/11-centos7安装Mariadb/</id>
+    <published>2017-04-11T12:00:00.000Z</published>
+    <updated>2017-04-20T14:46:34.591Z</updated>
+    
+    <content type="html"><![CDATA[<p>只是个centos7安装Mariadb的安装步骤说明。<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum install mariadb mariadb-server</div><div class="line">systemctl start mariadb ==&gt; 启动mariadb</div><div class="line">systemctl enable mariadb ==&gt; 开机自启动</div><div class="line">mysql_secure_installation ==&gt; 设置 root密码等相关</div></pre></td></tr></table></figure>
+<p>上面的设置密码功能不一定能成功，一般登录mariadb执行下面的指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MariaDB [(none)]&gt; mysql</div><div class="line">MariaDB [(none)]&gt; use mysql</div><div class="line">MariaDB [mysql]&gt; update user set password=password(&quot;123456&quot;)where user=&apos;root&apos;;</div><div class="line">MariaDB [mysql]&gt; flush privileges;</div></pre></td></tr></table></figure></p>
+<p>此外，默认情况下mariadb的root不允许远程连接，同时centos的防火墙会阻止mariadb远程连接，所以需要设置mariadb权限，同时配置防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos;IDENTIFIED BY &apos;123456&apos; WITH GRANT OPTION;</div><div class="line">flush privileges;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -I INPUT -i eth0 -p tcp --destination-port 3306 -j ACCEPT</div></pre></td></tr></table></figure>
+<p>注意配置防火墙是的网络名<strong>eth0</strong></p>
+<hr>
+<ul>
+<li><a href="http://blog.csdn.net/default7/article/details/41973887" target="_blank" rel="external">centos7 快速安装 mariadb（mysql）</a></li>
+<li><a href="http://www.cnblogs.com/24la/p/mariadb-remoting-access.html" target="_blank" rel="external">mariadb配置允许远程访问方式</a></li>
+<li><a href="http://stackoverflow.com/questions/23733734/how-to-enable-remote-access-of-mysql-in-centos" target="_blank" rel="external">How to enable remote access of mysql in centos?</a></li>
+<li><a href="https://segmentfault.com/a/1190000002704457" target="_blank" rel="external">centos7 设置mariadb密码</a>)</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;只是个centos7安装Mariadb的安装步骤说明。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="安装相关" scheme="http://yoursite.com/categories/%E5%AE%89%E8%A3%85%E7%9B%B8%E5%85%B3/"/>
+    
+    
+      <category term="Mariadb" scheme="http://yoursite.com/tags/Mariadb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript杂项一选择恐惧症</title>
+    <link href="http://yoursite.com/2017/04/08/201704/08-JavaScript%E6%9D%82%E9%A1%B9%E4%B8%80%EF%BC%9A%E9%80%89%E6%8B%A9%E6%81%90%E6%83%A7%E7%97%87/"/>
+    <id>http://yoursite.com/2017/04/08/201704/08-JavaScript杂项一：选择恐惧症/</id>
+    <published>2017-04-08T12:00:00.000Z</published>
+    <updated>2017-04-20T14:46:47.870Z</updated>
+    
+    <content type="html"><![CDATA[<p>相比桌面程序，前端页面的设计要好的多，但是对于普通的程序猿，界面始终是个绕不过去的坎。不是每个程序猿都是前端设计师，所以使用通用的皮肤或者界面库也就顺理成章，对于我来说，没有控件框架，框架再好也不敢用，要么前端会，要么提供一整套方案。当然有时间还是得补补前端设计，话说也做个一段时间，其实也还好。<br><a id="more"></a></p>
+<p>JavaScript的世界里，jQuery绝对算得上是神器，也是前端开发的标配工具，随便扒开一个网站的代码，估计找不到几个不用它的。当然，当年出现的类似的框架也真的不算少，prototype，mootools，yui等等，不过现在基本很少见了。</p>
+<p>随着最近组件化的兴起，vue，angular2，react三大框架也提供了强有力的支撑。当然在给前端开发人带来方便的同时，也带来了另一个选择恐惧症的缘由。当然要是都会最好，不过即使这样，也有熟的和不太熟的，何况不是人人有那么多精力同时精通三。</p>
+<p>开始在使用jQuery的时候也面对同样的问题，不过不是针对jQuery本身，而是开发后台时采用的后台模板。经过三番五次的倒腾，最后给每个看的上的都实现一个小的模板应用，在这些应用上面可以在数分钟内开始一个新的项目，后来就很少纠结框架了。即使他们之间有些短板，这个在做小模板应用的时候基本也能发现。当然对于特例，他们也不定管用，不过他们基本能适配大部分的后台了，真遇上了，也慢慢解决。</p>
+<p>对于vue、angular2、react，我也采取同样的方式，首先得能实际用上。文档都是用来查询的，更好的方式是一步一步能做个东西出来，遇到问题查文档搜谷歌整百度上溢出。目前来说，他们仨得热度都差不多，踩坑的同学多，所以从这个角度看，选哪个都行，不怕找不到资料和帮助。不过按照自己目前搜集的材料，vue、react都有完整的界面库，angular2有，但是相对来说，目前还不是太出众。所以如果直接拿来开发，而又没有精力美化设计，这个还是需要考虑的，毕竟很多公司的前端设计都是程序猿兼任的。话说，那个程序猿不想自己再整个新轮子玩玩。不过有了基础库并不代表能立马上手，最好有例子一步一步构建完整的可用的应用，这样可以减少很多弯路。至于细节，后面可以慢慢摸索，不管咋样跑起来才能有机会摸索。这方面vue和react都略胜一筹。至少目前知道的界面库，vue的element，react的Ant Design实现以及angular2的Material实现，明显前两者使用的人更多。不过angular2有个特殊的用处，ionic2默认是用angular2的，如果用移动端ionic2，angular2那是必须的。不过vue和react在移动端方面也还是不错的，尤其是react native。</p>
+<p>在完成默认的基础组件后，其他的如果需要自己实现，其实都差不多，如果不是特别复杂的功能，他们仨现有的能力也相当方便。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;相比桌面程序，前端页面的设计要好的多，但是对于普通的程序猿，界面始终是个绕不过去的坎。不是每个程序猿都是前端设计师，所以使用通用的皮肤或者界面库也就顺理成章，对于我来说，没有控件框架，框架再好也不敢用，要么前端会，要么提供一整套方案。当然有时间还是得补补前端设计，话说也做个一段时间，其实也还好。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript组件化笔记</title>
+    <link href="http://yoursite.com/2017/04/03/201704/03-javascript%E7%BB%84%E4%BB%B6%E5%8C%96%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2017/04/03/201704/03-javascript组件化笔记/</id>
+    <published>2017-04-03T12:00:00.000Z</published>
+    <updated>2017-04-20T14:46:55.576Z</updated>
+    
+    <content type="html"><![CDATA[<p>随着vue、angular、react的出现，在web端也挂起了一阵组件的热潮。其实在桌面程序开发，组件其实很早就出现了，而且devexpress和teleric等第三方界面的控件已经非常通用了，而且微软的silverlight和wpf写个控件也相当方便，尽管jQuery里面也出现不少的插件，但是始终有点别扭，而别扭的原因，个人觉得就是浏览器里面只认html的dom，对于自定义的对象，实际上是不存在的，而除非在JavaScript里面一直记录对象，否则很难通过其他途径获取我们定义的控件对象本身。除了实现技术的差别，最近的前端组件化在使用上和桌面其实差别不大，不过借助html和css确实可以做出非常绚丽的界面，这点桌面还是很有难度的。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>在界面开发的范围内，组件化算是一个很普通的概念。无论对于wpf还是qt后者Android，组件化一般都是一个基础性的东西，跟建个窗口整个对话框差不太多。但是JavaScript里面，组件化这两年才慢慢风靡起来，作为一个历史不短的界面脚本，到现在才对组件如此，却是有点奇怪。</p>
+<p>话说，JavaScript也是有大量控件的，如时间控件、下拉控件、选择框、弹出框等等。jquery本身也提供了一套UI。但是为啥之前就没人着重称呼他们为组件呢。如此一个简单的东西，为何要等到今天才大量流行？</p>
+<p>那真正的组件是啥样子的呢，以wpf（感觉qt和Android也差不多）。一般实现一个组件，继承某个用户组件基类，结合组件的生命周期完成自己想要的效果，同时对外暴露一些属性和事件等状态相关，大致就是这么回事。然后就没然后了，随便用。现在谁写程序，不用个几个组件的，有的还是整套的用，这里不再多说。</p>
+<p>如果JavaScript来实现呢？</p>
+<p>按照上面的方法，目前没有现有的方法。</p>
+<p>其中一个方式是扩展标签。借助实现一套自己的标签，然后完成效果和数据模型，但是目前没得希望。html支持自定义标签都不大好使（也就是是个div），别提行为、效果和数据模型啥的，还别忘了有ie。想和wpf那样用，有难度。</p>
+<p>另外一种方式，就是构建一个组件层次树，先提供根节点，然后在此基础上构建层次化的组件树，每个组件通过模板构建动态html完成组件的展示。整个应用通过根组件来层层统筹管理所有的组件，html在组件的层次中不再存在，而是借由组件自己完成实际渲染。这样避开了html的扩展局限性。在使用时，系统关注组件树，保持数据模型和组件树模型的同步就可以了。</p>
+<p>组件树这里的代表作是backbone，简单明了，思想也够简洁，不过有点太简陋了。比如缺乏模板、路由、数据绑定等等。生命周期一般也是简单的整体刷新渲染，简单粗暴有效。</p>
+<p>另外这里不得不提extjs这个库，基本屏蔽了html，也是走了一大步，不过扩展性略差，加上自己用的不是很多，不完全了解。据说底层实现的机制堪比桌面程序。</p>
+<p>那么组件底层需要啥呢。</p>
+<p>如果是backbonejs，jQuery就够了，当然添加一个模板也不错，要不拼接html也不容易。数据和界面的同步也很烦，当然可以手工跟踪数据模型的变动更新界面，不过knockout这种mvvm框架似乎更省事。如果页面太多，路由也似乎必不可少。当然代码多了还得找个包管理的，要不所有塞在一个地方也不合适。此外发布的时候，这些七七八八的最好打包成一个，http请求过多js也不像回事；有人嫌弃css不好使，要sass或者less；有人觉得coffeescript或者typescript不错…没问题，找个webpack或者gulp装上插件就行。一切看要求了。不过看着这套东西很眼熟。</p>
+<p>有人说backbone太简陋，别忘了他只是个库，大小也就那么点，不是整套的解决框架。所以ember、vue、angular、react出来了，其中angular自带扩展模板、双向绑定、注入管理（都直接es5）、状态流管理等等。其他的框架也类似。其中angular1的时候，还不是以组件为中心，而是模拟mvc，貌似后来主动断裂式升级到一组件为中心的angular2。这里的原因不太确定，不过对于界面来说，组件的确好使，MVC更适合数据流，而组件化更适合界面。而且随着云端的出现，数据的展示和采集更加需要一个灵活多变的终端，移动端和桌面端（微软已经支持原生的JavaScript）。</p>
+<p>为啥现在才重视组件化，不说架构思想，看看组件化开发的工具就知道了，没有node以及大堆的插件，组件化即时出来也没有现在的那么方便。backbone可是2010出来的，没普及只能说还不够傻瓜或者没那个层级的需求。另外抛开typescript和现有es5、es6，里面的概念反而没有那么难以理解。</p>
+<p>引用</p>
+<ul>
+<li><a href="http://javascript.ruanyifeng.com/introduction/history.html" target="_blank" rel="external">JavaScript语言的历史</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&amp;mid=2652974800&amp;idx=1&amp;sn=afc003d743f9e32224141a113c400742&amp;chksm=bd4afdf38a3d74e5bdacb0ab97eb0de50dd71a378ac642fb38632d9590185e53ede6d2781198&amp;mpshare=1&amp;scene=23&amp;srcid=03209Cdbi9kWgqxr0HPEUVPA##" target="_blank" rel="external">前端程序员必知：单页面应用的核心 </a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;随着vue、angular、react的出现，在web端也挂起了一阵组件的热潮。其实在桌面程序开发，组件其实很早就出现了，而且devexpress和teleric等第三方界面的控件已经非常通用了，而且微软的silverlight和wpf写个控件也相当方便，尽管jQuery里面也出现不少的插件，但是始终有点别扭，而别扭的原因，个人觉得就是浏览器里面只认html的dom，对于自定义的对象，实际上是不存在的，而除非在JavaScript里面一直记录对象，否则很难通过其他途径获取我们定义的控件对象本身。除了实现技术的差别，最近的前端组件化在使用上和桌面其实差别不大，不过借助html和css确实可以做出非常绚丽的界面，这点桌面还是很有难度的。&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>node的那些坑</title>
+    <link href="http://yoursite.com/2017/04/01/201704/01-node%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <id>http://yoursite.com/2017/04/01/201704/01-node的那些坑/</id>
+    <published>2017-04-01T12:00:00.000Z</published>
+    <updated>2017-04-20T14:47:11.504Z</updated>
+    
+    <content type="html"><![CDATA[<p>感觉JavaScript将统治一切，随便一个node的程序，依赖不下于任何一个后台语言的依赖包。感觉要是哪天github挂了，或者npm服务器挂了，我得回家种地了。<br><a id="more"></a></p>
+<h4 id="node升级"><a href="#node升级" class="headerlink" title="node升级"></a>node升级</h4><p>如果是windows，直接安装即可，一路next到底；</p>
+<h4 id="window升级npm"><a href="#window升级npm" class="headerlink" title="window升级npm"></a>window升级npm</h4><p>以管理员模式运行PowerShell，然后执行以下指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force</div><div class="line">npm install -g npm-windows-upgrade</div><div class="line">npm-windows-upgrade</div></pre></td></tr></table></figure>
+<h4 id="node-gyp问题"><a href="#node-gyp问题" class="headerlink" title="node-gyp问题"></a>node-gyp问题</h4><p>因为node-gyp依赖python3以下版本，所以注意机器上python的版本；</p>
+<p>或者设置</p>
+<blockquote>
+<p>npm install –python=python2.7</p>
+</blockquote>
+<p>或者</p>
+<blockquote>
+<p>npm config set python python2.7</p>
+</blockquote>
+<h3 id="node-sass安装问题"><a href="#node-sass安装问题" class="headerlink" title="node-sass安装问题"></a>node-sass安装问题</h3><p>还是使用cnpm安装</p>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><p>最好还是使用干净的虚拟机来开发吧，剩下的时间足够做些事情了。</p>
+<hr>
+<p>引用</p>
+<ul>
+<li><a href="https://my.oschina.net/homeemail/blog/335961" target="_blank" rel="external">npm install 时遇到的 python 问题</a></li>
+<li><a href="http://stackoverflow.com/questions/18412129/how-do-i-update-node-and-npm-on-windows" target="_blank" rel="external">How do I update node and npm on windows?</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;感觉JavaScript将统治一切，随便一个node的程序，依赖不下于任何一个后台语言的依赖包。感觉要是哪天github挂了，或者npm服务器挂了，我得回家种地了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+    
+  </entry>
+  
+</feed>
